@@ -1,5 +1,12 @@
 {
-  "name": "Robot Framework Training",
-  "image": "mcr.microsoft.com/devcontainers/python:3.12",
-  "postCreateCommand": "bash .devcontainer/postCreate.sh"
+"name": "Robot Framework Training",
+"image": "mcr.microsoft.com/devcontainers/universal:2",
+ 
+"features": {
+"ghcr.io/devcontainers/features/node:1": {
+"version": "lts"
+}
+},
+ 
+"postCreateCommand": "pip install -r requirements.txt && rfbrowser init"
 }
