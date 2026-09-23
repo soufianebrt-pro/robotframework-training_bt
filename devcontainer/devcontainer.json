@@ -1,5 +1,0 @@
-{
-  "name": "Robot Framework Training",
-  "image": "mcr.microsoft.com/devcontainers/python:3.12",
-  "postCreateCommand": "bash .devcontainer/postCreate.sh"
-}
