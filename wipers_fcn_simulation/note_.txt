@@ -1,0 +1,3 @@
+## Wipers Vehicle Function Simulation
+
+the goal of this folder is to simulate the behavior of Wipers ECU virtualy using python so we can perform tests using Robot framework
