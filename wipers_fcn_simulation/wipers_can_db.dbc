@@ -1,0 +1,35 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPEVAL_
+	BO_
+	VAL_
+	CR_
+	BA_EXdef_
+	BA_EX_KEY_
+	ENVVAR_KEY_
+
+BS_:
+
+BU_: BCM Tester
+
+
+BO_ 291 BodyControlModule: 1 BCM
+ SG_ WiperMode : 0|3@1+ (1,0) [0|4] "" Tester
+
+
+
+VAL_ 291 WiperMode 0 "Off" 1 "Interval" 2 "Slow" 3 "Fast" 4 "Mist";
