@@ -5,3 +5,4 @@ robotframework-jsonlibrary
 
 python-can
 cantools
+canviz
