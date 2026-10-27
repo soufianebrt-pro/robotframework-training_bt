@@ -1,0 +1,46 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPEVAL_
+	BO_
+	VAL_
+	CR_
+	BA_EXdef_
+	BA_EX_KEY_
+	ENVVAR_KEY_
+
+BS_:
+
+BU_: BCM RainSensor WiperMotor Tester
+
+
+BO_ 656 BCM_WiperCommand: 2 BCM
+ SG_ WiperWashRequest : 8|1@1+ (1,0) [0|1] "Bool" Tester
+ SG_ WiperCommandMode : 0|3@1+ (1,0) [0|5] "Enum" Tester
+
+BO_ 657 Wipers_Status: 2 WiperMotor
+ SG_ WiperParked : 9|1@1+ (1,0) [0|1] "Bool" BCM
+ SG_ WiperFaultStatus : 8|1@1+ (1,0) [0|1] "Enum" BCM
+ SG_ WiperCurrentState : 0|3@1+ (1,0) [0|5] "Enum" BCM
+
+BO_ 848 RainSensor_Data: 2 RainSensor
+ SG_ AutoWiperEnable : 8|1@1+ (1,0) [0|1] "BCM" Tester
+ SG_ RainIntensity : 0|8@1+ (0.5,0) [0|100] "%" BCM
+
+
+VAL_ 656 WiperCommandMode 0 "Off" 1 "Interval" 2 "Slow" 3 "Fast" 4 "Mist" 5 "Auto";
+VAL_ 657 WiperCurrentState 0 "Off" 1 "Interval" 2 "Slow" 3 "Fast" 4 "Park" 5 "Stall";
+VAL_ 657 WiperFaultStatus 0 "Normal" 1 "FaultDetected";

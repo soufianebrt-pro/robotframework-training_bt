@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0.1 (Python 3.12.1 on linux)" generated="2026-09-25T10:19:39.957919" rpa="false" schemaversion="5">
+<suite id="s1" name="Wipers Testsuite Adv 2" source="/workspaces/robotframework-training_bt/wipers_bus_simulation/wipers_testsuite_adv_2.robot">
+<test id="s1-t1" name="Verify Wiper Command Transmission" line="9">
+<kw name="Clear Bus Queue" owner="CanLibrary" type="SETUP">
+<doc>Clears any lingering messages from the virtual bus buffer.</doc>
+<status status="PASS" start="2026-09-25T10:19:40.143969" elapsed="0.050578"/>
+</kw>
+<kw name="Send Wiper Signal" owner="CanLibrary">
+<msg time="2026-09-25T10:19:40.195617" level="INFO">Sent Message 'BCM_WiperCommand' ID: 0x290 with WiperCommandMode=Fast</msg>
+<arg>BCM_WiperCommand</arg>
+<arg>WiperCommandMode</arg>
+<arg>Fast</arg>
+<doc>Encodes the wiper signal (accepts numbers or text like 'Fast') and sends it.</doc>
+<status status="PASS" start="2026-09-25T10:19:40.195088" elapsed="0.000615"/>
+</kw>
+<kw name="Send Wiper Signal" owner="CanLibrary">
+<msg time="2026-09-25T10:19:40.196237" level="INFO">Sent Message 'BCM_WiperCommand' ID: 0x290 with WiperWashRequest=1</msg>
+<arg>BCM_WiperCommand</arg>
+<arg>WiperWashRequest</arg>
+<arg>1</arg>
+<doc>Encodes the wiper signal (accepts numbers or text like 'Fast') and sends it.</doc>
+<status status="PASS" start="2026-09-25T10:19:40.195965" elapsed="0.000324"/>
+</kw>
+<kw name="Receive And Decode Wiper Message" owner="CanLibrary">
+<msg time="2026-09-25T10:19:40.196899" level="INFO">${signals} = {'WiperCommandMode': 3, 'WiperWashRequest': 0}</msg>
+<var>${signals}</var>
+<arg>BCM_WiperCommand</arg>
+<arg>timeout=1.0</arg>
+<doc>Receives a message and decodes it back into raw numeric values.</doc>
+<status status="PASS" start="2026-09-25T10:19:40.196473" elapsed="0.000457"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2026-09-25T10:19:40.197377" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${signals}[WiperCommandMode]</arg>
+<arg>3</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2026-09-25T10:19:40.197109" elapsed="0.000351"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2026-09-25T10:19:40.198036" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<msg time="2026-09-25T10:19:40.198220" level="FAIL">0.0 != 1.0</msg>
+<arg>${signals}[WiperWashRequest]</arg>
+<arg>1</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="FAIL" start="2026-09-25T10:19:40.197636" elapsed="0.000817">0.0 != 1.0</status>
+</kw>
+<doc>""Test sending a wiper command message.""</doc>
+<status status="FAIL" start="2026-09-25T10:19:40.142550" elapsed="0.056227">0.0 != 1.0</status>
+</test>
+<test id="s1-t2" name="Verify Wiper Motor Status Feedback" line="18">
+<kw name="Clear Bus Queue" owner="CanLibrary" type="SETUP">
+<doc>Clears any lingering messages from the virtual bus buffer.</doc>
+<status status="PASS" start="2026-09-25T10:19:40.199657" elapsed="0.051187"/>
+</kw>
+<kw name="Send Wiper Signal" owner="CanLibrary">
+<msg time="2026-09-25T10:19:40.254014" level="INFO">Sent Message 'Wipers_Status' ID: 0x291 with WiperCurrentState=Slow</msg>
+<arg>Wipers_Status</arg>
+<arg>WiperCurrentState</arg>
+<arg>Slow</arg>
+<doc>Encodes the wiper signal (accepts numbers or text like 'Fast') and sends it.</doc>
+<status status="PASS" start="2026-09-25T10:19:40.253507" elapsed="0.000577"/>
+</kw>
+<kw name="Send Wiper Signal" owner="CanLibrary">
+<msg time="2026-09-25T10:19:40.254637" level="INFO">Sent Message 'Wipers_Status' ID: 0x291 with WiperParked=0</msg>
+<arg>Wipers_Status</arg>
+<arg>WiperParked</arg>
+<arg>0</arg>
+<doc>Encodes the wiper signal (accepts numbers or text like 'Fast') and sends it.</doc>
+<status status="PASS" start="2026-09-25T10:19:40.254354" elapsed="0.000332"/>
+</kw>
+<kw name="Receive And Decode Wiper Message" owner="CanLibrary">
+<msg time="2026-09-25T10:19:40.255221" level="INFO">${signals} = {'WiperCurrentState': 2, 'WiperFaultStatus': 0, 'WiperParked': 0}</msg>
+<var>${signals}</var>
+<arg>Wipers_Status</arg>
+<arg>timeout=1.0</arg>
+<doc>Receives a message and decodes it back into raw numeric values.</doc>
+<status status="PASS" start="2026-09-25T10:19:40.254858" elapsed="0.000392"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2026-09-25T10:19:40.260635" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${signals}[WiperCurrentState]</arg>
+<arg>2</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2026-09-25T10:19:40.255419" elapsed="0.005310"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2026-09-25T10:19:40.265881" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${signals}[WiperParked]</arg>
+<arg>0</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2026-09-25T10:19:40.265586" elapsed="0.000376"/>
+</kw>
+<doc>""Test decoding a status frame reported by the wiper motor.""</doc>
+<status status="PASS" start="2026-09-25T10:19:40.199137" elapsed="0.067048"/>
+</test>
+<test id="s1-t3" name="Verify Rain Sensor Integration Data" line="27">
+<kw name="Clear Bus Queue" owner="CanLibrary" type="SETUP">
+<doc>Clears any lingering messages from the virtual bus buffer.</doc>
+<status status="PASS" start="2026-09-25T10:19:40.269475" elapsed="0.050740"/>
+</kw>
+<kw name="Send Wiper Signal" owner="CanLibrary">
+<msg time="2026-09-25T10:19:40.321070" level="INFO">Sent Message 'RainSensor_Data' ID: 0x350 with RainIntensity=75</msg>
+<arg>RainSensor_Data</arg>
+<arg>RainIntensity</arg>
+<arg>75</arg>
+<doc>Encodes the wiper signal (accepts numbers or text like 'Fast') and sends it.</doc>
+<status status="PASS" start="2026-09-25T10:19:40.320631" elapsed="0.000512"/>
+</kw>
+<kw name="Receive And Decode Wiper Message" owner="CanLibrary">
+<msg time="2026-09-25T10:19:40.321832" level="INFO">${signals} = {'RainIntensity': 75.0, 'AutoWiperEnable': 0}</msg>
+<var>${signals}</var>
+<arg>RainSensor_Data</arg>
+<arg>timeout=1.0</arg>
+<doc>Receives a message and decodes it back into raw numeric values.</doc>
+<status status="PASS" start="2026-09-25T10:19:40.321368" elapsed="0.000499"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2026-09-25T10:19:40.326511" level="INFO">Argument types are:
+&lt;class 'float'&gt;
+&lt;class 'str'&gt;</msg>
+<msg time="2026-09-25T10:19:40.326695" level="FAIL">75.0 != 37.5</msg>
+<arg>${signals}[RainIntensity]</arg>
+<arg>37.5</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="FAIL" start="2026-09-25T10:19:40.326229" elapsed="0.000586">75.0 != 37.5</status>
+</kw>
+<doc>""Test scaling on rain intensity signal (factor 0.5).""</doc>
+<status status="FAIL" start="2026-09-25T10:19:40.268986" elapsed="0.058125">75.0 != 37.5</status>
+</test>
+<kw name="Close Bus" owner="CanLibrary" type="TEARDOWN">
+<doc>Explicitly shuts down the virtual CAN bus to prevent warning logs.</doc>
+<status status="PASS" start="2026-09-25T10:19:40.327926" elapsed="0.000168"/>
+</kw>
+<status status="FAIL" start="2026-09-25T10:19:39.959242" elapsed="0.368904"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="2" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="2" skip="0" id="s1" name="Wipers Testsuite Adv 2">Wipers Testsuite Adv 2</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

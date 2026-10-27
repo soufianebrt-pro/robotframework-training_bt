@@ -1,0 +1,5 @@
+{
+    "robotcode.analysis.diagnosticModifiers.ignore": [
+        "*"
+    ]
+}

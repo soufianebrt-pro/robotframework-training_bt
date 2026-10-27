@@ -1,0 +1,85 @@
+VERSION "1.1"
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: BCM TPMS_FL TPMS_FR TPMS_RL TPMS_RR Cluster_Display
+
+BO_ 560 TPMS_Data_FL: 8 TPMS_FL
+ SG_ TPMS_Pressure_FL : 0|12@1+ (0.05,-50) [0|150] "kPa" BCM
+ SG_ TPMS_Temp_FL : 12|8@1+ (1,-40) [-40|210] "degC" BCM
+ SG_ TPMS_Status_FL : 20|3@1+ (1,0) [0|4] "" BCM
+
+BO_ 561 TPMS_Data_FR: 8 TPMS_FR
+ SG_ TPMS_Pressure_FR : 24|12@1+ (0.05,-50) [0|150] "kPa" BCM
+ SG_ TPMS_Temp_FR : 36|8@1+ (1,-40) [-40|210] "degC" BCM
+ SG_ TPMS_Status_FR : 44|3@1+ (1,0) [0|4] "" BCM
+
+BO_ 562 TPMS_Data_RL: 8 TPMS_RR
+ SG_ TPMS_Pressure_RL : 0|12@1+ (0.05,-50) [0|150] "kPa" BCM
+ SG_ TPMS_Temp_RL : 12|8@1+ (1,-40) [-40|210] "degC" BCM
+ SG_ TPMS_Status_RL : 20|3@1+ (1,0) [0|4] "" BCM
+
+BO_ 563 TPMS_Data_RR: 8 TPMS_RR
+ SG_ TPMS_Pressure_RR : 24|12@1+ (0.05,-50) [0|150] "kPa" BCM
+ SG_ TPMS_Temp_RR : 36|8@1+ (1,-40) [-40|210] "degC" BCM
+ SG_ TPMS_Status_RR : 44|3@1+ (1,0) [0|4] "" BCM
+
+// --- Added BCM Transmitted Messages ---
+BO_ 600 BCM_Vehicle_Info: 8 BCM
+ SG_ BCM_Odometer : 0|24@1+ (1,0) [0|1600000] "km" TPMS_FL,TPMS_FR,TPMS_RL,TPMS_RR
+ SG_ BCM_Ignition_Status : 24|2@1+ (1,0) [0|3] "" TPMS_FL,TPMS_FR,TPMS_RL,TPMS_RR
+
+BO_ 601 TPMS_Command_Ctrl: 4 BCM
+ SG_ TPMS_Learn_Mode_Cmd : 0|1@1+ (1,0) [0|1] "" TPMS_FL,TPMS_FR,TPMS_RL,TPMS_RR
+ SG_ TPMS_Reset_Req : 1|1@1+ (1,0) [0|1] "" TPMS_FL,TPMS_FR,TPMS_RL,TPMS_RR
+
+// --- Add this BCM-transmitted Warning Message ---
+
+BO_ 602 BCM_TPMS_Warning_Cluster: 3 BCM
+ SG_ BCM_Telltale_Lamp_Cmd : 0|2@1+ (1,0) [0|3] "" Cluster_Display
+ SG_ BCM_Warning_Chime_Cmd : 2|2@1+ (1,0) [0|3] "" Cluster_Display
+ SG_ BCM_Global_Warning_ID : 4|4@1+ (1,0) [0|15] "" Cluster_Display
+
+VAL_ 560 TPMS_Status_FL 0 "Normal" 1 "Low_Pressure" 2 "High_Pressure" 3 "Sensor_Fault" 4 "Battery_Low";
+VAL_ 561 TPMS_Status_FR 0 "Normal" 1 "Low_Pressure" 2 "High_Pressure" 3 "Sensor_Fault" 4 "Battery_Low";
+VAL_ 562 TPMS_Status_RL 0 "Normal" 1 "Low_Pressure" 2 "High_Pressure" 3 "Sensor_Fault" 4 "Battery_Low";
+VAL_ 563 TPMS_Status_RR 0 "Normal" 1 "Low_Pressure" 2 "High_Pressure" 3 "Sensor_Fault" 4 "Battery_Low";
+
+VAL_ 600 BCM_Ignition_Status 0 "Off" 1 "Accessory" 2 "Run" 3 "Crank";
+VAL_ 601 TPMS_Learn_Mode_Cmd 0 "Inactive" 1 "Active";
+// --- Value Tables for the Warning Signals ---
+VAL_ 602 BCM_Telltale_Lamp_Cmd 0 "Off" 1 "On_Solid" 2 "Flashing" 3 "Lamp_Fault";
+VAL_ 602 BCM_Warning_Chime_Cmd 0 "No_Chime" 1 "Single_Beep" 2 "Continuous_Alert" 3 "Reserved";
+VAL_ 602 BCM_Global_Warning_ID 0 "No_Warning" 1 "Front_Left_Low" 2 "Front_Right_Low" 3 "Rear_Left_Low" 4 "Rear_Right_Low" 5 "System_Failure" 6 "Battery_Weak";
+

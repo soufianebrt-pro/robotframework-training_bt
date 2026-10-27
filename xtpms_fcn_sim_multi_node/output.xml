@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0.1 (Python 3.12.1 on linux)" generated="2026-10-02T14:52:53.713608" rpa="false" schemaversion="5">
+<suite id="s1" name="Tpms Testsuite V2" source="/workspaces/robotframework-training_bt/xtpms_fcn_sim_multi_node/tpms_testsuite_v2.robot">
+<kw name="Start Tpms Trace Recording" owner="tpms_multi_node_sim" type="SETUP">
+<msg time="2026-10-02T14:52:53.812163" level="INFO">Started recording TPMS trace to tpms_run_output_v2.asc</msg>
+<arg>filename=tpms_run_output_v2.asc</arg>
+<doc>Starts recording CAN messages to a Vector-compatible file (.blf or .asc)
+using a virtual bus.</doc>
+<status status="PASS" start="2026-10-02T14:52:53.799769" elapsed="0.012481"/>
+</kw>
+<test id="s1-t1" name="Verify TPMS Low Pressure Triggers Cluster Warning" line="11">
+<kw name="Clear Bus Queue" owner="tpms_multi_node_sim" type="SETUP">
+<doc>Clears any lingering messages from the virtual bus buffer.</doc>
+<status status="PASS" start="2026-10-02T14:52:53.813070" elapsed="0.010273"/>
+</kw>
+<kw name="Node X Send Message" owner="tpms_multi_node_sim">
+<msg time="2026-10-02T14:52:53.824219" level="INFO">[Node tpms_sensors] Sent 0x230: {'TPMS_Pressure_FL': 120, 'TPMS_Temp_FL': 0, 'TPMS_Status_FL': 2}</msg>
+<arg>tpms_sensors</arg>
+<arg>TPMS_Data_FL</arg>
+<arg>TPMS_Status_FL=2</arg>
+<arg>TPMS_Pressure_FL=120</arg>
+<doc>Node A encodes and broadcasts 
+a command signal onto the bus.</doc>
+<status status="PASS" start="2026-10-02T14:52:53.823625" elapsed="0.000645"/>
+</kw>
+<kw name="Node X Receive And Respond" owner="tpms_multi_node_sim">
+<msg time="2026-10-02T14:52:53.825236" level="INFO">Timestamp: 1790952773.824065    ID:      230    S Rx                DL:  8    48 8d 22 00 00 00 00 00     Channel: tpms_can_bus
+ Command Recieved TPMS_Data_FL: {'TPMS_Pressure_FL': 120.0, 'TPMS_Temp_FL': 0, 'TPMS_Status_FL': 2}
+ Tyre pressure is Normal for Front Left Tyre (Node A) 
+[Node bcm] Responses is sent for the CAN Message BCM_TPMS_Warning_Cluster ID 0x25a: {'BCM_Telltale_Lamp_Cmd': 2, 'BCM_Warning_Chime_Cmd': 0, 'BCM_Global_Warning_ID': 3}</msg>
+<arg>bcm</arg>
+<arg>TPMS_Data_FL</arg>
+<doc>Simulates this behavior: 
+1. Listens for Node command.
+2. Validates it.
+3. Sends back a response status message</doc>
+<status status="PASS" start="2026-10-02T14:52:53.824774" elapsed="0.000507"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-10-02T14:52:54.325811" level="INFO">Slept 500 milliseconds.</msg>
+<arg>500ms</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-10-02T14:52:53.825510" elapsed="0.500405"/>
+</kw>
+<kw name="Receive Node X Response" owner="tpms_multi_node_sim">
+<msg time="2026-10-02T14:52:54.326409" level="INFO">Current available messages dict_keys(['TPMS_Data_FL', 'BCM_TPMS_Warning_Cluster'])
+ BCM_TPMS_Warning_Cluster Response Received: {'BCM_Telltale_Lamp_Cmd': 2, 'BCM_Warning_Chime_Cmd': 0, 'BCM_Global_Warning_ID': 3} from Node cluster_display</msg>
+<msg time="2026-10-02T14:52:54.326525" level="INFO">${warning_msg} = {'BCM_Telltale_Lamp_Cmd': 2, 'BCM_Warning_Chime_Cmd': 0, 'BCM_Global_Warning_ID': 3}</msg>
+<var>${warning_msg}</var>
+<arg>cluster_display</arg>
+<arg>BCM_TPMS_Warning_Cluster</arg>
+<doc>Tester listens for Node X's response frame to verify its behavior.</doc>
+<status status="PASS" start="2026-10-02T14:52:54.326183" elapsed="0.000362"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-10-02T14:52:54.326932" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${warning_msg}[BCM_Global_Warning_ID]</arg>
+<arg>3</arg>
+<arg>msg=Error: Front_Left_Low warning ID not set by BCM!</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-10-02T14:52:54.326714" elapsed="0.000268"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-10-02T14:52:54.327284" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${warning_msg}[BCM_Telltale_Lamp_Cmd]</arg>
+<arg>2</arg>
+<arg>msg=Error: Telltale lamp command should be Flashing (2)!</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-10-02T14:52:54.327124" elapsed="0.000201"/>
+</kw>
+<doc>Injects a low pressure signal for the Front-Left tire
+and validates that the BCM outputs the correct cluster warning.</doc>
+<tag>Functional</tag>
+<tag>TPMS</tag>
+<status status="PASS" start="2026-10-02T14:52:53.812424" elapsed="0.515055"/>
+</test>
+<kw name="Run Keywords" owner="BuiltIn" type="TEARDOWN">
+<kw name="Stop Tpms Trace Recording" owner="tpms_multi_node_sim">
+<msg time="2026-10-02T14:52:54.427366" level="INFO">Stopped TPMS trace recording.</msg>
+<msg time="2026-10-02T14:52:54.427460" level="INFO">Exception in thread Notifier for bus "Virtual bus channel tpms_can_bus":
+Traceback (most recent call last):
+  File "/usr/local/python/3.12.1/lib/python3.12/threading.py", line 1073, in _bootstrap_inner
+    self.run()
+  File "/usr/local/python/3.12.1/lib/python3.12/threading.py", line 1010, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/can/notifier.py", line 237, in _rx_thread
+    handle_message(msg)
+  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/can/notifier.py", line 257, in _on_message_received
+    res = callback(msg)
+          ^^^^^^^^^^^^^
+  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/can/listener.py", line 41, in __call__
+    self.on_message_received(msg)
+  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/can/io/asc.py", line 480, in on_message_received
+    self.log_event(serialized, msg.timestamp)
+  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/can/io/asc.py", line 424, in log_event
+    self.file.write(line)
+ValueError: I/O operation on closed file.</msg>
+<doc>Stops the recording, flushes the file, and shuts down the bus.</doc>
+<status status="PASS" start="2026-10-02T14:52:54.328165" elapsed="0.099584"/>
+</kw>
+<kw name="Close Bus" owner="tpms_multi_node_sim">
+<status status="PASS" start="2026-10-02T14:52:54.427991" elapsed="0.000167"/>
+</kw>
+<arg>Stop TPMS Trace Recording</arg>
+<arg>AND</arg>
+<arg>Close Bus</arg>
+<doc>Executes all the given keywords in a sequence.</doc>
+<status status="PASS" start="2026-10-02T14:52:54.328022" elapsed="0.100195"/>
+</kw>
+<status status="PASS" start="2026-10-02T14:52:53.714418" elapsed="0.713857"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">Functional</stat>
+<stat pass="1" fail="0" skip="0">TPMS</stat>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Tpms Testsuite V2">Tpms Testsuite V2</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
