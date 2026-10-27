@@ -1,0 +1,72 @@
+VERSION "1.2"
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: WiperSwitch BCM RainSensor WiperMotor WasherPump Tester
+
+BO_ 655 BCM_VehicleStatus: 8 Tester
+ SG_ IgnitionStatus : 0|3@1+ (1,0) [0|2] "Enum"  BCM
+ SG_ VehicleSpeed : 6|8@1+ (1,0) [0|200] "Km/h" BCM
+
+BO_ 656 BCM_WiperCommand: 8 WiperSwitch
+ SG_ WiperCommandMode : 0|3@1+ (1,0) [0|5] "Enum"  BCM
+ SG_ WashRequest : 6|8@1+ (1,0) [0|1] "Bool" BCM
+
+BO_ 657 Wipers_Status: 8 BCM
+ SG_ WiperCurrentState : 0|3@1+ (1,0) [0|5] "Enum"  Tester
+ SG_ WiperMotorCommand : 5|3@1+ (1,0) [0|2] "Enum"  WiperMotor
+ SG_ WiperFaultStatus : 8|1@1+ (1,0) [0|3] "Enum"  Tester
+ SG_ WiperParked : 12|1@1+ (1,0) [0|1] "Bool"  Tester
+ SG_ WasherPumpCommand : 13|1@1+ (1,0) [0|1] "bool"  WasherPump
+
+
+BO_ 848 RainSensor_Data: 8 RainSensor
+ SG_ RainIntensity : 0|8@1+ (0.5,0) [0|100] "%"  BCM
+ SG_ RainSensorStatus : 10|1@1+ (1,0) [0|1] "Bool"  BCM
+
+BO_ 849 WiperMotor_Data: 8 WiperMotor
+ SG_ WiperMotorCurrent : 0|8@1+ (0.5,0) [0|5000] "mA"  BCM
+ SG_ WiperParkSwitch : 10|1@1+ (1,0) [0|1] "Bool"  BCM
+ SG_ WiperMotorStatus : 11|1@1+ (1,0) [0|2] "Enum"  BCM
+
+
+VAL_ 655 IgnitionStatus 0 "OFF" 1 "ACC" 2 "ON";
+
+VAL_ 656 WiperCommandMode 0 "Off" 1 "Interval" 2 "Slow" 3 "Fast" 4 "Auto" ;
+
+VAL_ 657 WiperFaultStatus 0 "Normal" 1 "SENSOR_FAULT" 2 "Blocked" 3 "OverTemp" ;
+VAL_ 657 WiperMotorCommand 0 "OFF" 1 "LOW" 2 "HIGH";
+VAL_ 657 WiperCurrentState 0 "Off" 1 "Interval" 2 "Slow" 3 "Fast" 4 "Stall" ;
+
+VAL_ 849 WiperMotorStatus 0 "Available" 1 "Blocked" 2 "OverTemp";
