@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0.1 (Python 3.12.1 on linux)" generated="2026-10-19T13:51:54.571395" rpa="false" schemaversion="5">
+<suite id="s1" name="Wipers Bcm Testsuite V1" source="/workspaces/robotframework-training_bt/wipers_bcm_sim_v3/testcases/wipers_bcm_testsuite_v1.robot">
+<kw name="Start Trace Recording" type="SETUP">
+<msg time="2026-10-19T13:51:54.654120" level="FAIL">No keyword with name 'Start Trace Recording' found.</msg>
+<arg>filename=wipers_bcm_testrun_output.asc</arg>
+<status status="FAIL" start="2026-10-19T13:51:54.654041" elapsed="0.000134">No keyword with name 'Start Trace Recording' found.</status>
+</kw>
+<test id="s1-t1" name="Verify Wiper Command Transmission" line="10">
+<doc>Test sending a MANUAL wiper command message</doc>
+<tag>Functional</tag>
+<tag>REQ_WIPERS_001</tag>
+<tag>Wipers</tag>
+<status status="FAIL" start="2026-10-19T13:51:54.654303" elapsed="0.000386">Parent suite setup failed:
+No keyword with name 'Start Trace Recording' found.</status>
+</test>
+<test id="s1-t2" name="Verify Auto Wiping Transmission" line="31">
+<doc>Test Auto wiping function</doc>
+<tag>Functional</tag>
+<tag>Wipers</tag>
+<status status="FAIL" start="2026-10-19T13:51:54.654926" elapsed="0.000285">Parent suite setup failed:
+No keyword with name 'Start Trace Recording' found.</status>
+</test>
+<kw name="Run Keywords" owner="BuiltIn" type="TEARDOWN">
+<kw name="Stop Trace Recording">
+<msg time="2026-10-19T13:51:54.656438" level="FAIL">No keyword with name 'Stop Trace Recording' found.</msg>
+<status status="FAIL" start="2026-10-19T13:51:54.656414" elapsed="0.000059">No keyword with name 'Stop Trace Recording' found.</status>
+</kw>
+<kw name="Close Bus">
+<msg time="2026-10-19T13:51:54.656965" level="FAIL">No keyword with name 'Close Bus' found.</msg>
+<status status="FAIL" start="2026-10-19T13:51:54.656948" elapsed="0.000041">No keyword with name 'Close Bus' found.</status>
+</kw>
+<arg>Stop Trace Recording</arg>
+<arg>AND</arg>
+<arg>Close Bus</arg>
+<doc>Executes all the given keywords in a sequence.</doc>
+<status status="FAIL" start="2026-10-19T13:51:54.655687" elapsed="0.001403">Several failures occurred:
+
+1) No keyword with name 'Stop Trace Recording' found.
+
+2) No keyword with name 'Close Bus' found.</status>
+</kw>
+<status status="FAIL" start="2026-10-19T13:51:54.572307" elapsed="0.084843">Suite setup failed:
+No keyword with name 'Start Trace Recording' found.
+
+Also suite teardown failed:
+Several failures occurred:
+
+1) No keyword with name 'Stop Trace Recording' found.
+
+2) No keyword with name 'Close Bus' found.</status>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="2" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="0" fail="2" skip="0">Functional</stat>
+<stat pass="0" fail="1" skip="0">REQ_WIPERS_001</stat>
+<stat pass="0" fail="2" skip="0">Wipers</stat>
+</tag>
+<suite>
+<stat pass="0" fail="2" skip="0" id="s1" name="Wipers Bcm Testsuite V1">Wipers Bcm Testsuite V1</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2026-10-19T13:51:54.652608" level="ERROR">Error in file '/workspaces/robotframework-training_bt/wipers_bcm_sim_v3/testcases/wipers_bcm_testsuite_v1.robot' on line 2: Initializing library 'CAN_Sim_Library_Wipers' with arguments [ ../wipers_can_db_adv.dbc ] failed: FileNotFoundError: [Errno 2] No such file or directory: '../wipers_can_db_adv.dbc'
+Traceback (most recent call last):
+  File "/workspaces/robotframework-training_bt/wipers_bcm_sim_v3/CAN_Sim_Library_Wipers.py", line 12, in __init__
+    self.db = cantools.database.load_file(dbc_file_path)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/cantools/database/__init__.py", line 171, in load_file
+    with open(filename, encoding=encoding, errors='replace') as fin:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '../wipers_can_db_adv.dbc'</msg>
+</errors>
+</robot>

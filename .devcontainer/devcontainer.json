@@ -1,5 +1,13 @@
 {
   "name": "Robot Framework Training",
-  "image": "mcr.microsoft.com/devcontainers/python:3.12",
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+
+
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts"
+    }
+  },
+
   "postCreateCommand": "bash .devcontainer/postCreate.sh"
 }
