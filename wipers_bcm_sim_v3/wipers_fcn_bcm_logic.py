@@ -1,4 +1,3 @@
-import time
 
 def get_bcm_manual_wipers_status(dbc,message_state_cache):
     resp_def = dbc.get_message_by_name("Wipers_Status")

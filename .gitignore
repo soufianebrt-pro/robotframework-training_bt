@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Node.js
+node_modules/
+
+# Robot Framework outputs
+output.xml
+log.html
+report.html
+
+# Local editor and OS files
+.idea/
+.DS_Store
+Thumbs.db
