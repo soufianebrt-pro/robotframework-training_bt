@@ -9,8 +9,6 @@ env/
 .mypy_cache/
 .ruff_cache/
 
-# Node.js
-node_modules/
 
 # Robot Framework outputs
 output.xml
