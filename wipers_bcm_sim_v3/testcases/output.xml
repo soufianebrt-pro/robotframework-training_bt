@@ -1,60 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.0.1 (Python 3.12.1 on linux)" generated="2026-10-19T13:55:51.362007" rpa="false" schemaversion="5">
+<robot generator="Robot 7.0.1 (Python 3.12.1 on linux)" generated="2026-10-27T14:44:49.921015" rpa="false" schemaversion="5">
 <suite id="s1" name="Wipers Bcm Testsuite V1" source="/workspaces/robotframework-training_bt/wipers_bcm_sim_v3/testcases/wipers_bcm_testsuite_v1.robot">
 <kw name="Start Trace Recording" owner="CAN_Sim_Library_Wipers" type="SETUP">
-<msg time="2026-10-19T13:55:51.508525" level="INFO">Started recording CAN trace to wipers_bcm_testrun_output.asc</msg>
+<msg time="2026-10-27T14:44:50.621090" level="INFO">Started recording CAN trace to wipers_bcm_testrun_output.asc</msg>
 <arg>filename=wipers_bcm_testrun_output.asc</arg>
 <doc>Starts recording CAN messages to a Vector-compatible file (.blf or .asc)
 using a virtual bus.</doc>
-<status status="PASS" start="2026-10-19T13:55:51.489536" elapsed="0.019099"/>
+<status status="PASS" start="2026-10-27T14:44:50.568376" elapsed="0.052842"/>
 </kw>
 <test id="s1-t1" name="Verify Wiper Command Transmission" line="10">
 <kw name="Clear Bus Queue" owner="CAN_Sim_Library_Wipers" type="SETUP">
 <doc>Clears any lingering messages from the virtual bus buffer.</doc>
-<status status="PASS" start="2026-10-19T13:55:51.509522" elapsed="0.010316"/>
+<status status="PASS" start="2026-10-27T14:44:50.622153" elapsed="0.012306"/>
 </kw>
 <kw name="Start Vehicle Can Sim" owner="CAN_Sim_Library_Wipers">
-<msg time="2026-10-19T13:55:51.526011" level="INFO">wipers_switch -&gt; BCM_WiperCommand
+<msg time="2026-10-27T14:44:50.649170" level="INFO">wipers_switch -&gt; BCM_WiperCommand
 bcm -&gt; Wipers_Status
 wiper_motor -&gt; WiperMotor_Data
 rain_sensor -&gt; RainSensor_Data
 tester -&gt; BCM_VehicleStatus
 Starting periodic sending for node: dict_keys(['wipers_switch', 'bcm', 'wiper_motor', 'rain_sensor', 'tester'])</msg>
 <doc>Start the Vehicle Simulation</doc>
-<status status="PASS" start="2026-10-19T13:55:51.520146" elapsed="0.005990"/>
+<status status="PASS" start="2026-10-27T14:44:50.634771" elapsed="0.014495"/>
 </kw>
 <kw name="Node X Send Message" owner="CAN_Sim_Library_Wipers">
-<msg time="2026-10-19T13:55:51.627100" level="INFO">[Node tester] Sent 0x28f: {'IgnitionStatus': 'ON', 'VehicleSpeed': 0}</msg>
+<msg time="2026-10-27T14:44:50.750108" level="INFO">[Node tester] Sent 0x28f: {'IgnitionStatus': 'ON', 'VehicleSpeed': 0}</msg>
 <arg>tester</arg>
 <arg>BCM_VehicleStatus</arg>
 <arg>IgnitionStatus=ON</arg>
 <doc>Node A encodes and broadcasts 
 a command signal onto the bus.</doc>
-<status status="PASS" start="2026-10-19T13:55:51.526661" elapsed="0.100534"/>
+<status status="PASS" start="2026-10-27T14:44:50.649600" elapsed="0.100636"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2026-10-19T13:55:51.827840" level="INFO">Slept 200 milliseconds.</msg>
+<msg time="2026-10-27T14:44:50.952100" level="INFO">Slept 200 milliseconds.</msg>
 <arg>200ms</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2026-10-19T13:55:51.627452" elapsed="0.200504"/>
+<status status="PASS" start="2026-10-27T14:44:50.750559" elapsed="0.201707"/>
 </kw>
 <kw name="Node X Send Message" owner="CAN_Sim_Library_Wipers">
-<msg time="2026-10-19T13:55:52.026201" level="INFO">[Node wipers_switch] Sent 0x290: {'WiperCommandMode': 'Fast', 'WashRequest': 0}</msg>
+<msg time="2026-10-27T14:44:51.149468" level="INFO">[Node wipers_switch] Sent 0x290: {'WiperCommandMode': 'Fast', 'WashRequest': 0}</msg>
 <arg>wipers_switch</arg>
 <arg>BCM_WiperCommand</arg>
 <arg>WiperCommandMode=Fast</arg>
 <doc>Node A encodes and broadcasts 
 a command signal onto the bus.</doc>
-<status status="PASS" start="2026-10-19T13:55:51.828226" elapsed="0.198072"/>
+<status status="PASS" start="2026-10-27T14:44:50.952586" elapsed="0.197011"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2026-10-19T13:55:52.226890" level="INFO">Slept 200 milliseconds.</msg>
+<msg time="2026-10-27T14:44:51.350736" level="INFO">Slept 200 milliseconds.</msg>
 <arg>200ms</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2026-10-19T13:55:52.026562" elapsed="0.200453"/>
+<status status="PASS" start="2026-10-27T14:44:51.150012" elapsed="0.200860"/>
 </kw>
 <kw name="Node X Receive And Respond" owner="CAN_Sim_Library_Wipers">
-<msg time="2026-10-19T13:55:52.521841" level="INFO">[Node bcm] Getting message 656... Not the correct one, waiting for 655...
+<msg time="2026-10-27T14:44:51.639363" level="INFO">[Node bcm] Getting message 656... Not the correct one, waiting for 655...
 [Node bcm] Getting message 849... Not the correct one, waiting for 655...
 [Node bcm] Getting message 848... Not the correct one, waiting for 655...
 Command Recieved BCM_VehicleStatus: {'IgnitionStatus': 'ON', 'VehicleSpeed': 0}
@@ -76,95 +76,95 @@ Decoded input BCM Message BCM_WiperCommand stored in message_state_cache: {'Wipe
 <doc>Simulates this behavior: 
 1. Listens for Node command.
 2. Validates it &amp; Sends back a response status message</doc>
-<status status="PASS" start="2026-10-19T13:55:52.227300" elapsed="0.294633"/>
+<status status="PASS" start="2026-10-27T14:44:51.351128" elapsed="0.288328"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2026-10-19T13:55:53.022539" level="INFO">Slept 500 milliseconds.</msg>
+<msg time="2026-10-27T14:44:52.140006" level="INFO">Slept 500 milliseconds.</msg>
 <arg>500ms</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2026-10-19T13:55:52.522201" elapsed="0.500460"/>
+<status status="PASS" start="2026-10-27T14:44:51.639694" elapsed="0.500455"/>
 </kw>
 <kw name="Get Node X Response" owner="CAN_Sim_Library_Wipers">
-<msg time="2026-10-19T13:55:53.023171" level="INFO">Current available messages dict_keys(['BCM_WiperCommand', 'Wipers_Status', 'WiperMotor_Data', 'RainSensor_Data', 'BCM_VehicleStatus'])
+<msg time="2026-10-27T14:44:52.141159" level="INFO">Current available messages dict_keys(['BCM_WiperCommand', 'Wipers_Status', 'WiperMotor_Data', 'RainSensor_Data', 'BCM_VehicleStatus'])
  Wipers_Status Response Received: {'WiperCurrentState': 2, 'WiperMotorCommand': 2, 'WiperFaultStatus': 0, 'WiperParked': 0, 'WasherPumpCommand': 0} By the Node : tester</msg>
-<msg time="2026-10-19T13:55:53.023266" level="INFO">${wipers_status} = {'WiperCurrentState': 2, 'WiperMotorCommand': 2, 'WiperFaultStatus': 0, 'WiperParked': 0, 'WasherPumpCommand': 0}</msg>
+<msg time="2026-10-27T14:44:52.141296" level="INFO">${wipers_status} = {'WiperCurrentState': 2, 'WiperMotorCommand': 2, 'WiperFaultStatus': 0, 'WiperParked': 0, 'WasherPumpCommand': 0}</msg>
 <var>${wipers_status}</var>
 <arg>tester</arg>
 <arg>Wipers_Status</arg>
 <doc>a Node listens for another Node's response frame to verify its behavior.</doc>
-<status status="PASS" start="2026-10-19T13:55:53.022934" elapsed="0.000348"/>
+<status status="PASS" start="2026-10-27T14:44:52.140725" elapsed="0.000620"/>
 </kw>
 <kw name="Should Be Equal As Integers" owner="BuiltIn">
-<msg time="2026-10-19T13:55:53.023682" level="INFO">Argument types are:
+<msg time="2026-10-27T14:44:52.141972" level="INFO">Argument types are:
 &lt;class 'int'&gt;
 &lt;class 'str'&gt;</msg>
 <arg>${wipers_status}[WiperMotorCommand]</arg>
 <arg>2</arg>
 <arg>msg=Error: WiperMotorCommand does not match expected value "High".</arg>
 <doc>Fails if objects are unequal after converting them to integers.</doc>
-<status status="PASS" start="2026-10-19T13:55:53.023459" elapsed="0.000270"/>
+<status status="PASS" start="2026-10-27T14:44:52.141665" elapsed="0.000376"/>
 </kw>
 <doc>Test sending a MANUAL wiper command message</doc>
 <tag>Functional</tag>
 <tag>REQ_WIPERS_001</tag>
 <tag>Wipers</tag>
-<status status="PASS" start="2026-10-19T13:55:51.508857" elapsed="1.515016"/>
+<status status="PASS" start="2026-10-27T14:44:50.621475" elapsed="1.520757"/>
 </test>
 <test id="s1-t2" name="Verify Auto Wiping Transmission" line="31">
 <kw name="Clear Bus Queue" owner="CAN_Sim_Library_Wipers" type="SETUP">
 <doc>Clears any lingering messages from the virtual bus buffer.</doc>
-<status status="PASS" start="2026-10-19T13:55:53.024445" elapsed="0.010260"/>
+<status status="PASS" start="2026-10-27T14:44:52.143123" elapsed="0.011226"/>
 </kw>
 <kw name="Node X Send Message" owner="CAN_Sim_Library_Wipers">
-<msg time="2026-10-19T13:55:53.226192" level="INFO">[Node tester] Sent 0x28f: {'IgnitionStatus': 'ON', 'VehicleSpeed': 0}</msg>
+<msg time="2026-10-27T14:44:52.351550" level="INFO">[Node tester] Sent 0x28f: {'IgnitionStatus': 'ON', 'VehicleSpeed': 0}</msg>
 <arg>tester</arg>
 <arg>BCM_VehicleStatus</arg>
 <arg>IgnitionStatus=ON</arg>
 <doc>Node A encodes and broadcasts 
 a command signal onto the bus.</doc>
-<status status="PASS" start="2026-10-19T13:55:53.034960" elapsed="0.191327"/>
+<status status="PASS" start="2026-10-27T14:44:52.154585" elapsed="0.197086"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2026-10-19T13:55:53.426861" level="INFO">Slept 200 milliseconds.</msg>
+<msg time="2026-10-27T14:44:52.552328" level="INFO">Slept 200 milliseconds.</msg>
 <arg>200ms</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2026-10-19T13:55:53.226549" elapsed="0.200434"/>
+<status status="PASS" start="2026-10-27T14:44:52.351965" elapsed="0.200511"/>
 </kw>
 <kw name="Node X Send Message" owner="CAN_Sim_Library_Wipers">
-<msg time="2026-10-19T13:55:53.626359" level="INFO">[Node wipers_switch] Sent 0x290: {'WiperCommandMode': 'Auto', 'WashRequest': 0}</msg>
+<msg time="2026-10-27T14:44:52.749432" level="INFO">[Node wipers_switch] Sent 0x290: {'WiperCommandMode': 'Auto', 'WashRequest': 0}</msg>
 <arg>wipers_switch</arg>
 <arg>BCM_WiperCommand</arg>
 <arg>WiperCommandMode=Auto</arg>
 <doc>Node A encodes and broadcasts 
 a command signal onto the bus.</doc>
-<status status="PASS" start="2026-10-19T13:55:53.427246" elapsed="0.199213"/>
+<status status="PASS" start="2026-10-27T14:44:52.552960" elapsed="0.196572"/>
 </kw>
 <kw name="Node X Send Message" owner="CAN_Sim_Library_Wipers">
-<msg time="2026-10-19T13:55:53.826205" level="INFO">[Node rain_sensor] Sent 0x350: {'RainIntensity': 0.0, 'RainSensorStatus': 1}</msg>
+<msg time="2026-10-27T14:44:52.949475" level="INFO">[Node rain_sensor] Sent 0x350: {'RainIntensity': 0.0, 'RainSensorStatus': 1}</msg>
 <arg>rain_sensor</arg>
 <arg>RainSensor_Data</arg>
 <arg>RainSensorStatus=1</arg>
 <doc>Node A encodes and broadcasts 
 a command signal onto the bus.</doc>
-<status status="PASS" start="2026-10-19T13:55:53.626713" elapsed="0.199588"/>
+<status status="PASS" start="2026-10-27T14:44:52.749797" elapsed="0.199804"/>
 </kw>
 <kw name="Node X Send Message" owner="CAN_Sim_Library_Wipers">
-<msg time="2026-10-19T13:55:54.026249" level="INFO">[Node rain_sensor] Sent 0x350: {'RainIntensity': 30, 'RainSensorStatus': 1}</msg>
+<msg time="2026-10-27T14:44:53.150234" level="INFO">[Node rain_sensor] Sent 0x350: {'RainIntensity': 30, 'RainSensorStatus': 1}</msg>
 <arg>rain_sensor</arg>
 <arg>RainSensor_Data</arg>
 <arg>RainIntensity=30</arg>
 <doc>Node A encodes and broadcasts 
 a command signal onto the bus.</doc>
-<status status="PASS" start="2026-10-19T13:55:53.826618" elapsed="0.199729"/>
+<status status="PASS" start="2026-10-27T14:44:52.950287" elapsed="0.200085"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2026-10-19T13:55:54.526902" level="INFO">Slept 500 milliseconds.</msg>
+<msg time="2026-10-27T14:44:53.650978" level="INFO">Slept 500 milliseconds.</msg>
 <arg>500ms</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2026-10-19T13:55:54.026625" elapsed="0.500381"/>
+<status status="PASS" start="2026-10-27T14:44:53.150670" elapsed="0.500412"/>
 </kw>
 <kw name="Node X Receive And Respond" owner="CAN_Sim_Library_Wipers">
-<msg time="2026-10-19T13:55:54.527575" level="INFO">[Node bcm] Getting message 656... Not the correct one, waiting for 655...
+<msg time="2026-10-27T14:44:53.651652" level="INFO">[Node bcm] Getting message 656... Not the correct one, waiting for 655...
 [Node bcm] Getting message 849... Not the correct one, waiting for 655...
 [Node bcm] Getting message 848... Not the correct one, waiting for 655...
 Command Recieved BCM_VehicleStatus: {'IgnitionStatus': 'ON', 'VehicleSpeed': 0}
@@ -186,68 +186,68 @@ Decoded input BCM Message BCM_WiperCommand stored in message_state_cache: {'Wipe
 <doc>Simulates this behavior: 
 1. Listens for Node command.
 2. Validates it &amp; Sends back a response status message</doc>
-<status status="PASS" start="2026-10-19T13:55:54.527273" elapsed="0.000347"/>
+<status status="PASS" start="2026-10-27T14:44:53.651344" elapsed="0.000351"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2026-10-19T13:55:55.028076" level="INFO">Slept 500 milliseconds.</msg>
+<msg time="2026-10-27T14:44:54.152142" level="INFO">Slept 500 milliseconds.</msg>
 <arg>500ms</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2026-10-19T13:55:54.527779" elapsed="0.500413"/>
+<status status="PASS" start="2026-10-27T14:44:53.651850" elapsed="0.500409"/>
 </kw>
 <kw name="Get Node X Response" owner="CAN_Sim_Library_Wipers">
-<msg time="2026-10-19T13:55:55.028694" level="INFO">Current available messages dict_keys(['BCM_WiperCommand', 'Wipers_Status', 'WiperMotor_Data', 'RainSensor_Data', 'BCM_VehicleStatus'])
+<msg time="2026-10-27T14:44:54.152794" level="INFO">Current available messages dict_keys(['BCM_WiperCommand', 'Wipers_Status', 'WiperMotor_Data', 'RainSensor_Data', 'BCM_VehicleStatus'])
  Wipers_Status Response Received: {'WiperCurrentState': 3, 'WiperMotorCommand': 1, 'WiperFaultStatus': 0, 'WiperParked': 0, 'WasherPumpCommand': 0} By the Node : tester</msg>
-<msg time="2026-10-19T13:55:55.028781" level="INFO">${wipers_status} = {'WiperCurrentState': 3, 'WiperMotorCommand': 1, 'WiperFaultStatus': 0, 'WiperParked': 0, 'WasherPumpCommand': 0}</msg>
+<msg time="2026-10-27T14:44:54.152885" level="INFO">${wipers_status} = {'WiperCurrentState': 3, 'WiperMotorCommand': 1, 'WiperFaultStatus': 0, 'WiperParked': 0, 'WasherPumpCommand': 0}</msg>
 <var>${wipers_status}</var>
 <arg>tester</arg>
 <arg>Wipers_Status</arg>
 <doc>a Node listens for another Node's response frame to verify its behavior.</doc>
-<status status="PASS" start="2026-10-19T13:55:55.028484" elapsed="0.000314"/>
+<status status="PASS" start="2026-10-27T14:44:54.152581" elapsed="0.000321"/>
 </kw>
 <kw name="Should Be Equal As Integers" owner="BuiltIn">
-<msg time="2026-10-19T13:55:55.029151" level="INFO">Argument types are:
+<msg time="2026-10-27T14:44:54.153222" level="INFO">Argument types are:
 &lt;class 'int'&gt;
 &lt;class 'str'&gt;</msg>
 <arg>${wipers_status}[WiperFaultStatus]</arg>
 <arg>0</arg>
 <arg>msg=Error: WiperFaultStatus does not match expected value.</arg>
 <doc>Fails if objects are unequal after converting them to integers.</doc>
-<status status="PASS" start="2026-10-19T13:55:55.028938" elapsed="0.000260"/>
+<status status="PASS" start="2026-10-27T14:44:54.153033" elapsed="0.000234"/>
 </kw>
 <kw name="Should Be Equal As Integers" owner="BuiltIn">
-<msg time="2026-10-19T13:55:55.029467" level="INFO">Argument types are:
+<msg time="2026-10-27T14:44:54.153530" level="INFO">Argument types are:
 &lt;class 'int'&gt;
 &lt;class 'str'&gt;</msg>
 <arg>${wipers_status}[WiperCurrentState]</arg>
 <arg>3</arg>
 <arg>msg=Error: WiperCurrentState does not match expected value.</arg>
 <doc>Fails if objects are unequal after converting them to integers.</doc>
-<status status="PASS" start="2026-10-19T13:55:55.029332" elapsed="0.000171"/>
+<status status="PASS" start="2026-10-27T14:44:54.153395" elapsed="0.000173"/>
 </kw>
 <doc>Test Auto wiping function</doc>
 <tag>Functional</tag>
 <tag>Wipers</tag>
-<status status="PASS" start="2026-10-19T13:55:53.024148" elapsed="2.005494"/>
+<status status="PASS" start="2026-10-27T14:44:52.142699" elapsed="2.011016"/>
 </test>
 <kw name="Run Keywords" owner="BuiltIn" type="TEARDOWN">
 <kw name="Stop Trace Recording" owner="CAN_Sim_Library_Wipers">
-<msg time="2026-10-19T13:55:56.123888" level="INFO">Notifier: [&lt;can.listener.BufferedReader object at 0x7f46ff85fbf0&gt;]
-Notifier: [&lt;can.listener.BufferedReader object at 0x7f46ff85fc20&gt;]
-Notifier: [&lt;can.listener.BufferedReader object at 0x7f46ff9f0fb0&gt;]
+<msg time="2026-10-27T14:44:55.247119" level="INFO">Notifier: [&lt;can.listener.BufferedReader object at 0x7124a2357a70&gt;]
+Notifier: [&lt;can.listener.BufferedReader object at 0x7124a2357aa0&gt;]
+Notifier: [&lt;can.listener.BufferedReader object at 0x7124a2357ce0&gt;]
 Stopped CAN trace recording.</msg>
 <doc>Stops the recording, flushes the file, and shuts down the bus.</doc>
-<status status="PASS" start="2026-10-19T13:55:55.030314" elapsed="1.093695"/>
+<status status="PASS" start="2026-10-27T14:44:54.154362" elapsed="1.092871"/>
 </kw>
 <kw name="Close Bus" owner="CAN_Sim_Library_Wipers">
-<status status="PASS" start="2026-10-19T13:55:56.124356" elapsed="0.000194"/>
+<status status="PASS" start="2026-10-27T14:44:55.247450" elapsed="0.000134"/>
 </kw>
 <arg>Stop Trace Recording</arg>
 <arg>AND</arg>
 <arg>Close Bus</arg>
 <doc>Executes all the given keywords in a sequence.</doc>
-<status status="PASS" start="2026-10-19T13:55:55.030139" elapsed="1.094469"/>
+<status status="PASS" start="2026-10-27T14:44:54.154203" elapsed="1.093417"/>
 </kw>
-<status status="PASS" start="2026-10-19T13:55:51.363074" elapsed="4.761584"/>
+<status status="PASS" start="2026-10-27T14:44:49.922121" elapsed="5.325531"/>
 </suite>
 <statistics>
 <total>
